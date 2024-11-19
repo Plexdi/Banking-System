@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class userManagement {
+public class UserManagement {
     private List<Users> user;
 
     public void CreateAccount(String username, String password){
@@ -24,15 +24,40 @@ public class userManagement {
         System.out.println("User " + username + " has added successfully!");
     }
 
+    public void Login(String username, String password){
+        for (Users eachUsers : user){
+            if (username.equals(eachUsers.getUsername())){
+                if (password.equals(eachUsers.getPassword())){
+                    System.out.println("Login successful!");
+                }
+            } else{
+                System.out.println("invalid credential");
+                return;
+            }
+        }
+    }
+
     public void Deposit(int id, String username, double amount){
         for (Users eachUsers : user){
             if (id == eachUsers.getId()){
-                double userMoney = (eachUsers.getAmount() + amount);
-                eachUsers.setAmount(amount);
+                double newMoney = (eachUsers.getAmount() + amount);
+                eachUsers.setAmount(newMoney);
             }
         }
     }    
-
     
+    public void Withdraw(int id, String username, double amount){
+        for (Users eachUsers : user){
+            if (id == eachUsers.getId()){
+                double userMoney = eachUsers.getAmount();
+                if (userMoney < amount){
+                    System.out.println("You do not have money to.");
+                } else{
+                    double newUserAmount = (eachUsers.getAmount() - amount);
+                    eachUsers.setAmount(newUserAmount);
+                }
+            }
+        }
+    }    
 }
 
