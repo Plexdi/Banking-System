@@ -1,7 +1,12 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserManagement {
     private List<Users> user;
+
+    public UserManagement(){
+        this.user = new ArrayList<>();
+    }
 
     public void CreateAccount(String username, String password){
         int id = 0;
@@ -24,18 +29,27 @@ public class UserManagement {
         System.out.println("User " + username + " has added successfully!");
     }
 
-    public void Login(String username, String password){
-        for (Users eachUsers : user){
-            if (username.equals(eachUsers.getUsername())){
-                if (password.equals(eachUsers.getPassword())){
+    public void Login(String username, String password) {
+        if (user.isEmpty()) {
+            System.out.println("No users found. Please sign up first.");
+            return;
+        }
+    
+        for (Users eachUsers : user) {
+            if (username.equals(eachUsers.getUsername())) {
+                if (password.equals(eachUsers.getPassword())) {
                     System.out.println("Login successful!");
+                    return;
+                } else {
+                    System.out.println("Invalid password!");
+                    return;
                 }
-            } else{
-                System.out.println("invalid credential");
-                return;
             }
         }
+    
+        System.out.println("Invalid username!");
     }
+    
 
     public void Deposit(int id, String username, double amount){
         for (Users eachUsers : user){
