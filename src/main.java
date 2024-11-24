@@ -22,6 +22,16 @@ public class main{
                     boolean validations = userManagement.Login(username, password);
                     if (validations == true){
                         System.out.println("1. Deposit \n2. Withdraw \n3. View balance ");
+                        int actions = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (actions) {
+                            case 1 :
+                                
+                                break;
+                            default:
+                                throw new AssertionError();
+                        }
                     }
                     break;
                 case 2:
